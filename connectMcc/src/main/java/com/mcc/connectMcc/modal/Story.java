@@ -1,5 +1,8 @@
 package com.mcc.connectMcc.modal;
 
+import java.time.LocalDateTime;
+
+import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,11 +17,21 @@ public class Story {
 	@GeneratedValue(strategy=GenerationType.AUTO)
      private Integer id;
 	
+	@Embedded
+	@AttributeOverrides ( {
+		@AttributeOverride(name="id",column=@Column(name="user_id")),
+		@AttributeOverride(name="email",column=@Column(name="user_email"))
+	})
+	
 	 private UserDto user;
+	
+	@NotNull
 	 
 	 private String image;
 	 private String caption;
 	 private LocalDateTime timestamp;
 	 
-	 
+	 public Story()   {
+		 
+	 }
 }
