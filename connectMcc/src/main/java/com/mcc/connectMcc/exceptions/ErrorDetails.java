@@ -1,5 +1,6 @@
 package com.mcc.connectMcc.exceptions;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class ErrorDetails {
@@ -17,6 +18,7 @@ public class ErrorDetails {
 		this.details = details;
 		this.timestamp = timestamp;
 	}
+	
 	
 	
 }

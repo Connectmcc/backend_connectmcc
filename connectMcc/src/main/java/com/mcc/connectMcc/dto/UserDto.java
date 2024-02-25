@@ -9,6 +9,12 @@ public class UserDto {
 	private String email;
 	private String name;
 	private String userimage;
+	
+	
+	public UserDto() {
+		
+		// TODO Auto-generated constructor stub
+	}
 	public UserDto(Integer id, String username, String email, String name, String userimage) {
 		super();
 		this.id = id;
@@ -62,6 +68,15 @@ public class UserDto {
 		UserDto other = (UserDto) obj;
 		return Objects.equals(email, other.email) && Objects.equals(id, other.id) && Objects.equals(name, other.name)
 				&& Objects.equals(userimage, other.userimage) && Objects.equals(username, other.username);
+	}
+	public String setUserImage(String username2) {
+		return userimage;
+		// TODO Auto-generated method stub
+		
+	}
+	public String getUserImage() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

@@ -45,6 +45,13 @@ public class User {
    private List<Story> stories=new ArrayList<>();
    @ManyToMany
    private List<Post> savedPost=new ArrayList<>();
+   
+   
+   
+public User() {
+	
+	// TODO Auto-generated constructor stub
+}
 
 public User(Integer id, String username, String email, String mobile, String bio, String gender, String image,
 		String password, Set<UserDto> follower, Set<UserDto> following, List<Story> stories, List<Post> savedPost) {
@@ -165,6 +172,19 @@ public String toString() {
 			+ ", gender=" + gender + ", image=" + image + ", password=" + password + ", follower=" + follower
 			+ ", following=" + following + "]";
 }
+
+public String getName() {
+	return null;
+	// TODO Auto-generated method stub
+	
+}
+
+public void setName(Object name) {
+	// TODO Auto-generated method stub
+	
+}
+
+
    
    
 }
