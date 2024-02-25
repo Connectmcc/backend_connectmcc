@@ -184,6 +184,16 @@ public void setName(Object name) {
 	
 }
 
+public String getWebsite() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+public void setWebsite(String website) {
+	// TODO Auto-generated method stub
+	
+}
+
 
    
    
