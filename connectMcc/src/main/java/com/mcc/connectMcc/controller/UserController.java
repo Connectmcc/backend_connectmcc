@@ -1,5 +1,7 @@
 package com.mcc.connectMcc.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -48,13 +50,18 @@ public class UserController {
 		return null;
 	}
 	
-	@PutMapping("/req}")
+	@PutMapping("/req")
 	public ResponseEntity<MessageResponse> findUserProfileHandler(@RequestHeader("Authorization") String token){
 	
 		
 		return null;
 	}
 	
+	@GetMapping("/m/{userIds}")
+	public ResponseEntity<List<User>> findUserByIdsHandler(@PathVariable List<Integer> userIds) throws UserException{
+		List<User> users=userService.findUserByIds(userIds);
+		return new ResponseEntity<List<User>>(users,HttpStatus.OK);
+	}
 	
 	
 	
