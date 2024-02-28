@@ -1,4 +1,4 @@
-package com.mcc.Config;
+package com.mcc.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
