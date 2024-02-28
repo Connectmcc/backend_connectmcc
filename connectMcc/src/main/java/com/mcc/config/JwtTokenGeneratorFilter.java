@@ -32,10 +32,21 @@ public class JwtTokenGeneratorFilter extends OncePerRequestFilter {
 					.setIssuedAt(new Date())
 					.claim("authorities",populateAuthorities(authentication.getAuthorities()))
 					.claim("username",authentication.getName())
+					.setExpiration(new Date(new Date().getTime()+300000000))
+					.signWith(key).compact();
+			
+			response.setHeader(security,jwt);
 					
 		}
 	}
-	public String populateAuthorities()
+	public String populateAuthorities(collection<? extends GrantedAuthority> collection) {
+		
+		set<String> authorities=new  HashSet();
+		for (grantedeAuthority authority: collection)
+			authorities.add(authority.getAuthority());
+	}
+		return String.join(",",authorities);
+		
 	}
 	}
 }
