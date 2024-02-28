@@ -35,7 +35,7 @@ public class JwtTokenGeneratorFilter extends OncePerRequestFilter {
 					
 		}
 	}
-	public String populateAuthorities()
-	}
+	public String populateAuthorities() {
+	
 	}
 }
