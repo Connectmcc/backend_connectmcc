@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,14 +26,15 @@ public class AuthController {
 		return new ResponseEntity<User>(createdUser,HttpStatus.OK);
 	}
 	
+	@GetMapping("/signin")
 	public ResponseEntity<User> signinHandler(Authentication auth) throws BadCredentialsException{
 		
 		Optional<User> opt=userRepo.findByEmail(auth.getName());
 		if(opt.isPresent()) {
-			
+			return new ResponseEntity<User>(opt.get(),HttpStatus.ACCEPTED);
 		}
 		
 		
-		return null;
+	   throw new BadCredentialsException("invalid username or password");
 	}
 }
