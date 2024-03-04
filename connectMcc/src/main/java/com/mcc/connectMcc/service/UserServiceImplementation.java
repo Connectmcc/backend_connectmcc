@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.mcc.connectMcc.dto.UserDto;
 import com.mcc.connectMcc.exceptions.UserException;
@@ -13,7 +14,8 @@ import com.mcc.connectMcc.repository.UserRepository;
 public class UserServiceImplementation implements UserService{
     @Autowired
 	private UserRepository userRepository;
-	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	@Override
 	public User registerUser(User user) throws UserException {
@@ -35,10 +37,11 @@ public class UserServiceImplementation implements UserService{
 		User newUser=new User();
 		
 		newUser.setEmail(user.getEmail());
-		newUser.setPassword(user.getPassword());
+		
 		newUser.setUsername(user.getUsername());
 		newUser.setName(user.getName());
 		
+		newUser.setPassword(passwordEncoder.encode(user.getPassword()));
 		return userRepository.save(newUser);
 	}
 

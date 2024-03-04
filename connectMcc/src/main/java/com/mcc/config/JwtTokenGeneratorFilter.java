@@ -1,11 +1,15 @@
 package com.mcc.config;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.crypto.SecretKey;
 
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -28,7 +32,7 @@ public class JwtTokenGeneratorFilter extends OncePerRequestFilter {
 			SecretKey key=Keys.hmacShaKeyFor(SecurityContext.JWT_KEY.getBytes());
 			
 			String jwt=Jwts.builder()
-					.setIssuer("instagram")
+					.setIssuer("Connectmcc")
 					.setIssuedAt(new Date())
 					.claim("authorities",populateAuthorities(authentication.getAuthorities()))
 					.claim("username",authentication.getName())
@@ -39,20 +43,22 @@ public class JwtTokenGeneratorFilter extends OncePerRequestFilter {
 					
 		}
 		
-		filterchain.dofilter(request,response);
+		filterChain.doFilter(request,response);
 	}
-	public String populateAuthorities(collection<? extends GrantedAuthority> collection) {
+
+	public String populateAuthorities(Collection<? extends GrantedAuthority> collection) {
 		
-		set<String> authorities=new  HashSet();
-		for (grantedeAuthority authority: collection)
+		Set<String> authorities=new HashSet<>();
+		for (GrantedAuthority authority: collection) {
 			authorities.add(authority.getAuthority());
-	}
+		}
 		return String.join(",",authorities);
 		
 	}
+
      protected boolean shouldNotFilter(HttpServletRequest req) throws ServletException{
     	 return !req.getServletPath().equals("/signin");
      }
      
 	}
-}
+

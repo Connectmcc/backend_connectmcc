@@ -32,8 +32,8 @@ public class GlobalExceptions {
 	
 	
 	
-	@ExceptionHandler(Exception.class)
-	   public ResponseEntity<ErrorDetails> otherExceptionHandle(Exception ue, WebRequest req){
+	@ExceptionHandler(CommentException.class)
+	   public ResponseEntity<ErrorDetails> CommentExceptionHandle(CommentException ue, WebRequest req){
 			
 			ErrorDetails err=new ErrorDetails(ue.getMessage(), req.getDescription(false),LocalDateTime.now());
 			
