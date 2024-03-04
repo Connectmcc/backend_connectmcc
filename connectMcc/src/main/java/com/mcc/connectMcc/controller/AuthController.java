@@ -14,12 +14,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mcc.connectMcc.exceptions.UserException;
 import com.mcc.connectMcc.modal.User;
+import com.mcc.connectMcc.repository.UserRepository;
 import com.mcc.connectMcc.service.UserService;
 
 @RestController
 public class AuthController {
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private UserRepository userRepo;
+	
 	@PostMapping("/signup")
 	public ResponseEntity<User> registerUserHandler(@RequestBody User user) throws UserException{
 		User createdUser=userService.registerUser(user);
