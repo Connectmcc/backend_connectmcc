@@ -37,6 +37,10 @@ public class Comment {
 	private Set<UserDto> likedByUsers= new HashSet<UserDto>();
 	
 	private LocalDateTime createdAt;
+	
+	public Comment() {
+		// TODO Auto-generated constructor stub
+	}
 
 	public Comment(Integer id, UserDto user, String content, Set<UserDto> likedByUsers, LocalDateTime createdAt) {
 		super();

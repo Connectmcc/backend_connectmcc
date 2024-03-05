@@ -36,7 +36,13 @@ public class GlobalExceptions {
 		   return new ResponseEntity<ErrorDetails>(err,HttpStatus.BAD_REQUEST);
 	   }
 	
-	
+	@ExceptionHandler(StoryException.class)
+	   public ResponseEntity<ErrorDetails> StoryExceptionHandle(StoryException ue, WebRequest req){
+			
+			ErrorDetails err=new ErrorDetails(ue.getMessage(), req.getDescription(false),LocalDateTime.now());
+			
+		   return new ResponseEntity<ErrorDetails>(err,HttpStatus.BAD_REQUEST);
+	   }
 	
 	
 	
