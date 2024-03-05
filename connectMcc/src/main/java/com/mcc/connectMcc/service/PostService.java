@@ -7,7 +7,7 @@ import com.mcc.connectMcc.exceptions.UserException;
 import com.mcc.connectMcc.modal.Post;
 
 public interface PostService {
-   public Post createPost(Post post) throws UserException;
+   public Post createPost(Post post,Integer userId) throws UserException;
    
    public String deletePost(Integer postId, Integer userId) throws  UserException, PostException;
     

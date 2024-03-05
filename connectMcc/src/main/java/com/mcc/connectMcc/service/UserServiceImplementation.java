@@ -10,12 +10,17 @@ import com.mcc.connectMcc.dto.UserDto;
 import com.mcc.connectMcc.exceptions.UserException;
 import com.mcc.connectMcc.modal.User;
 import com.mcc.connectMcc.repository.UserRepository;
+import com.mcc.connectMcc.security.JwtTokenClaims;
+import com.mcc.connectMcc.security.JwtTokenProvider;
 
 public class UserServiceImplementation implements UserService{
     @Autowired
 	private UserRepository userRepository;
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	
+	@Autowired
+	private JwtTokenProvider jwtTokenProvider;
 	
 	@Override
 	public User registerUser(User user) throws UserException {
@@ -58,8 +63,21 @@ public class UserServiceImplementation implements UserService{
 
 	@Override
 	public User findUserByProfile(String token) throws UserException {
-		// TODO Auto-generated method stub
-		return null;
+		//Bearer afafdadfasdfasdf
+	    token=token.substring(7);
+	    
+	    JwtTokenClaims jwtTokenClaims=jwtTokenProvider.getClaimsFromToken(token);
+	    
+	    String email=jwtTokenClaims.getUsername() ;
+	    
+	    Optional<User> opt=userRepository.findByEmail(email);
+	    
+	    if(opt.isPresent()) {
+	    	return opt.get();
+	    	}
+	    
+	    
+		throw new UserException("invalid token...");
 	}
 
 	@Override
