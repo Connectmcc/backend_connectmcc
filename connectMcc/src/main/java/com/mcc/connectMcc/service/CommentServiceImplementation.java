@@ -6,8 +6,9 @@ import com.mcc.connectMcc.exceptions.CommentException;
 import com.mcc.connectMcc.exceptions.UserException;
 import com.mcc.connectMcc.exceptions.PostException;
 import com.mcc.connectMcc.modal.Comment;
+import com.mcc.connectMcc.repository.CommentRepository;
 
-@service
+@Service
 
 
 public class CommentServiceImplementation implements CommentService {
@@ -15,7 +16,7 @@ public class CommentServiceImplementation implements CommentService {
 	private CommentRepository commentRepository;
 
 	@Override
-	public Comment createComment(Comment comment, Integer postId, Integer userId) throws UserException, PostEx {
+	public Comment createComment(Comment comment, Integer postId, Integer userId) throws UserException, PostException{
 		// TODO Auto-generated method stub
 		return null;
 	}

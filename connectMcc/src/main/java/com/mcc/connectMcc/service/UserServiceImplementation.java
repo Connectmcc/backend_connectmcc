@@ -62,7 +62,7 @@ public class UserServiceImplementation implements UserService{
 	}
 
 	@Override
-	public User findUserByProfile(String token) throws UserException {
+	public User findUserProfile(String token) throws UserException {
 		//Bearer afafdadfasdfasdf
 	    token=token.substring(7);
 	    
