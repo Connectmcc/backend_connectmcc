@@ -14,7 +14,7 @@ public interface UserRepository extends JpaRepository<User, Integer>{
 	
 	public Optional<User> findByEmail(String email);
 	
-	public Optional<User> findyByUsername(String username);
+	public Optional<User> findByUsername(String username);
 	
 	
 	@Query("SELECT u From User u Where u.id IN:users")

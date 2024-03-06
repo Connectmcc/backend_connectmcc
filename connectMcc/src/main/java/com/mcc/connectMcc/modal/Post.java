@@ -53,7 +53,8 @@ public class Post {
 	@JoinTable(name="likedByUsers",joinColumns=@JoinColumn(name="user_id"))
 
     private Set<UserDto> likedByUsers= new HashSet<>();
-
+      
+	 
 
 
 	public Post(Integer id, String caption, String image, String location, LocalDateTime createdAt, UserDto user,

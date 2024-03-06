@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import com.mcc.connectMcc.dto.UserDto;
 import com.mcc.connectMcc.exceptions.UserException;
@@ -13,6 +14,7 @@ import com.mcc.connectMcc.repository.UserRepository;
 import com.mcc.connectMcc.security.JwtTokenClaims;
 import com.mcc.connectMcc.security.JwtTokenProvider;
 
+@Service 
 public class UserServiceImplementation implements UserService{
     @Autowired
 	private UserRepository userRepository;
@@ -22,6 +24,11 @@ public class UserServiceImplementation implements UserService{
 	@Autowired
 	private JwtTokenProvider jwtTokenProvider;
 	
+	@Autowired
+    public UserServiceImplementation(PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+    }
+	
 	@Override
 	public User registerUser(User user) throws UserException {
 	   
@@ -30,7 +37,7 @@ public class UserServiceImplementation implements UserService{
 			throw new UserException ("Email id Already Exixts");
 			
 		}
-		Optional<User> isUsernameExist=userRepository.findyByUsername(user.getUsername());
+		Optional<User> isUsernameExist=userRepository.findByUsername(user.getUsername());
 		if(isUsernameExist.isPresent()) {
 			throw new UserException ("Username is Already Taken..");
 			
@@ -82,7 +89,7 @@ public class UserServiceImplementation implements UserService{
 
 	@Override
 	public User findUserByUsername(String username) throws UserException {
-		Optional<User> opt=userRepository.findyByUsername(username);
+		Optional<User> opt=userRepository.findByUsername(username);
 		
 		if(opt.isPresent()) {
 			return opt.get();
